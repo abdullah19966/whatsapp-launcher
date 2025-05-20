@@ -6,6 +6,10 @@
   <title>واتساب مباشر</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal :wght@500&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Tajawal', sans-serif;
@@ -15,14 +19,15 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      padding: 20px;
     }
 
     .container {
       background: white;
       padding: 30px 25px;
-      border-radius: 12px;
+      border-radius: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
+      max-width: 420px;
       width: 100%;
       text-align: center;
     }
@@ -30,11 +35,17 @@
     .logo {
       font-size: 40px;
       margin-bottom: 15px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     h1 {
-      font-size: 20px;
-      margin-bottom: 20px;
+      font-size: 22px;
+      margin-bottom: 25px;
       color: #00a88a;
     }
 
@@ -52,16 +63,16 @@
       padding: 12px;
       font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 8px;
       margin-bottom: 20px;
-      box-sizing: border-box;
-      transition: border-color 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     select:focus,
     input:focus {
       border-color: #00a88a;
       outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 168, 138, 0.2);
     }
 
     .buttons-row {
@@ -69,6 +80,7 @@
       gap: 10px;
       justify-content: space-between;
       flex-direction: row-reverse;
+      margin-top: 10px;
     }
 
     button {
@@ -76,13 +88,14 @@
       padding: 12px;
       font-size: 16px;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
+      font-weight: bold;
     }
 
     .btn-clear {
@@ -102,12 +115,18 @@
     .btn-submit:hover {
       background-color: #1fa15d;
     }
+
+    footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="logo">💬</div>
+    <div class="logo">📱</div>
     <h1>اختر الدولة وأدخل الرقم</h1>
 
     <label for="country">الدولة:</label>
@@ -127,8 +146,12 @@
 
     <div class="buttons-row">
       <button class="btn-clear" onclick="clearField()">🗑️ مسح</button>
-      <button class="btn-submit" onclick="openCustomLink()">📱 افتح واتساب</button>
+      <button class="btn-submit" onclick="openCustomLink()">💬 افتح واتساب</button>
     </div>
+
+    <footer>
+      تم إنشاء هذه الأداة بواسطة عبدالله
+    </footer>
   </div>
 
   <script>
