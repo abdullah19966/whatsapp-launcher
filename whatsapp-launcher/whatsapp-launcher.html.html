@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>واتساب مباشر</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 120px auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            text-align: start;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus,
+        input:focus {
+            border-color: #00a88a;
+            outline: none;
+        }
+
+        .buttons-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .clear-btn,
+        .submit-btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .clear-btn {
+            background-color: #e0e0e0;
+            color: #555;
+        }
+
+        .clear-btn:hover {
+            background-color: #ccc;
+        }
+
+        .submit-btn {
+            background-color: #00a88a;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #009075;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>اختر الدولة وأدخل الرقم</h1>
+
+        <label for="country">الدولة:</label>
+        <select id="country">
+            <option value="966">المملكة العربية السعودية (+966)</option>
+            <option value="971">الإمارات العربية المتحدة (+971)</option>
+            <option value="20">مصر (+20)</option>
+            <option value="962">الأردن (+962)</option>
+            <option value="965">الكويت (+965)</option>
+            <option value="973">البحرين (+973)</option>
+            <option value="974">قطر (+974)</option>
+            <option value="968">عُمان (+968)</option>
+        </select>
+
+        <label for="phoneNumber">رقم الجوال:</label>
+        <input type="text" id="phoneNumber" placeholder="مثال: 533020583">
+
+        <div class="buttons-row">
+            <button class="clear-btn" onclick="clearField()" title="امسح الحقل">🗑️ مسح</button>
+            <button class="submit-btn" onclick="openCustomLink()">📲 افتح واتساب</button>
+        </div>
+    </div>
+
+    <script>
+        function openCustomLink() {
+            var country = document.getElementById("country").value;
+            var localNumber = document.getElementById("phoneNumber").value;
+
+            // تنظيف الرقم وإزالة كل شيء غير رقمي
+            localNumber = localNumber.replace(/\D/g, '').replace(/^0+/, '');
+
+            if (/^\d+$/.test(localNumber)) {
+                var fullNumber = country + localNumber;
+
+                // وضع رابط واتساب هنا
+                var templateURL = "https://wa.me/%s ";
+
+                // استبدال %s بالرقم الكامل
+                var finalURL = templateURL.replace("%s", fullNumber);
+
+                // فتح الرابط
+                window.open(finalURL, "_blank");
+            } else {
+                alert("من فضلك أدخل رقم جوال صحيح بدون مسافات أو رموز.");
+            }
+        }
+
+        function clearField() {
+            document.getElementById("phoneNumber").value = "";
+        }
+
+        window.openCustomLink = openCustomLink;
+    </script>
+
+</body>
+</html>
